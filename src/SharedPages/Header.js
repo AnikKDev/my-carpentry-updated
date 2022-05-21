@@ -5,9 +5,6 @@ const Header = () => {
     const menuOptions = <>
         <li className="mx-2"><NavLink to="/home">Home</NavLink></li>
         <li className="mx-2"><NavLink to="/dashboard">Dashboard</NavLink></li>
-        <li className="mx-2"><NavLink to="/myorders">My Orders</NavLink></li>
-        <li className="mx-2"><NavLink to="/review">Review</NavLink></li>
-        <li className="mx-2"><NavLink to="/profile">Profile</NavLink></li>
         <li className="mx-2"><NavLink to="/blogs">Blogs</NavLink></li>
         <li className="mx-2"><NavLink to="/myportfolio">My Portfolio</NavLink></li>
     </>
