@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,8 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
+
+    // sign in with email
     const [
         signInWithEmailAndPassword,
         user,
@@ -16,13 +18,16 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
-
+    // form submission
     const onSubmit = ({ email, password }) => {
         signInWithEmailAndPassword(email, password);
         reset()
     };
 
-    if (user) {
+    // sign in with google
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+    if (user || gUser) {
         navigate(from, { replace: true });
     };
     return (
@@ -57,6 +62,8 @@ const Login = () => {
                 <label class="my-2">
                     <button class="btn btn-link px-0">Forgot password?</button>
                 </label>
+                <div class="divider">OR</div>
+                <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary w-80">SIGN iN WITH GOOGLE</button>
                 <label class="mt-2">
                     Don't have an account?<Link to="/signup" class="btn btn-link px-0">Sign Up</Link>
                 </label>

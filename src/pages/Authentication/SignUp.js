@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 const SignUp = () => {
 
@@ -20,7 +20,10 @@ const SignUp = () => {
         await updateProfile({ displayName: name });
         reset()
     };
-    if (user) {
+
+    // sign in with google
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    if (user || gUser) {
         console.log(user)
     }
     return (
@@ -63,7 +66,7 @@ const SignUp = () => {
 
                 </form>
                 <div class="divider">OR</div>
-                <button className="btn btn-outline btn-primary w-80">SIGN iN WITH GOOGLE</button>
+                <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary w-80">SIGN iN WITH GOOGLE</button>
 
                 <label class="mt-2">
                     Already have an account? <Link to="/login" class="btn btn-link px-0">Login</Link>
