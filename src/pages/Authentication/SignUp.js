@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import useToken from '../../hooks/useToken';
 const SignUp = () => {
+    const navigate = useNavigate();
 
     const [
         createUserWithEmailAndPassword,
@@ -23,8 +25,12 @@ const SignUp = () => {
 
     // sign in with google
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    if (user || gUser) {
-        console.log(user)
+
+
+    const [token] = useToken(user || gUser);
+
+    if (token) {
+        navigate('/home')
     }
     return (
         <div className=" flex justify-center lg:h-screen items-center">

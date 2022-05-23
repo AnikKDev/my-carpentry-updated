@@ -4,11 +4,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import axios from "axios";
 import auth from '../../firebase.init';
 const ToolDetail = () => {
+    const [orderedQuantity, setOrderedQuantity] = useState('');
     const [user, loading, error] = useAuthState(auth);
+    const [quantityError, setQuantityError] = useState('');
 
     const { id } = useParams();
     const [toolDetail, setToolDetail] = useState({});
-    const { toolName, price, minQuantity, availableQuantity, picture, detail } = toolDetail;
+    const { toolName, price, minQuantity, availableQuantity, picture, detail, _id } = toolDetail;
 
     useEffect(() => {
         (async function getTool() {
@@ -21,16 +23,55 @@ const ToolDetail = () => {
         })();
     }, [id]);
 
+
+
     // form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        const purchaseDetail = {
-            name: user.displayName,
-            email: user.email,
-            address: e.target.address.value,
-            phone: e.target.phone.value
+        if (orderedQuantity <= availableQuantity && orderedQuantity >= minQuantity) {
+            console.log('perfect quantity');
+            const orderData = {
+                toolId: _id,
+                toolName: toolName,
+                price: price,
+                quantity: orderedQuantity,
+                email: user.email,
+                phone: e.target.phone.value,
+            }
+
+            fetch('http://localhost:5000/booking', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                })
+        } else {
+            console.log('imperfect quantity');
+            setQuantityError('imperfect')
         }
-        console.log(purchaseDetail)
+
+
+
+
+        /* setOrderedQuantity(e.target.quantity.value);
+        if (quantityOrdered < minimumOrder || quantityOrdered > availableQuantity) {
+            return
+        } else {
+            const purchaseDetail = {
+                name: user.displayName,
+                email: user.email,
+                address: e.target.address.value,
+                phone: e.target.phone.value,
+                quantity: quantityOrdered
+            }
+            console.log(purchaseDetail)
+        } */
+
         // reset()
     };
     return (
@@ -88,9 +129,20 @@ const ToolDetail = () => {
 
                         </div>
 
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Order Quantity</span>
+                            </label>
+                            <input
+                                type="number" onChange={event => setOrderedQuantity(event?.target?.value)} required placeholder='Quantity' class="input input-bordered"
+                            />
+
+
+                        </div>
+
 
                         <div class="form-control mt-6">
-                            <button type="submit" class="btn btn-primary">Continue Purchasing</button>
+                            <button type="submit" class={`btn btn-primary`}>Continue Purchasing</button>
                         </div>
 
                     </form>
