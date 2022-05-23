@@ -25,12 +25,13 @@ const Users = () => {
                 if (res.status === 403) {
                     toast.error('Failed to make Admin')
                 }
-                res.json()
+                return res.json()
             })
             .then(data => {
+                console.log(data)
                 if (data.modifiedCount > 0) {
-                    toast.success('Added as an Admin');
                     refetch()
+                    toast.success('Added as an Admin');
                 }
             })
     }

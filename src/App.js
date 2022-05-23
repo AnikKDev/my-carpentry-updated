@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import RequireAuth from './Authorization/RequireAuth';
+import RequireAdmin from './Authorization/RequireAdmin';
 import Login from './pages/Authentication/Login';
 import SignUp from './pages/Authentication/SignUp';
 import Blogs from './pages/Blogs';
@@ -33,7 +34,11 @@ function App() {
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path="addareview" element={<AddAReview></AddAReview>}></Route>
           <Route path="addareview" element={<AddAReview></AddAReview>}></Route>
-          <Route path="users" element={<Users></Users>}></Route>
+          <Route path="users" element={
+            <RequireAdmin>
+              <Users></Users>
+            </RequireAdmin>
+          }></Route>
         </Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/myportfolio" element={<MyPortfolio></MyPortfolio>}></Route>
