@@ -1,13 +1,36 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-
+import auth from '../../firebase.init';
+import { toast } from 'react-hot-toast';
 const AddAReview = () => {
+    const [user] = useAuthState(auth);
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
     // form submission
     const onSubmit = (data) => {
-        console.log(data)
-        // reset()
+        // console.log(data)
+        // post review to server
+        const review = {
+            name: user.displayName,
+            rating: data.rating,
+            comment: data.comment
+        }
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.acknowledged) {
+                    toast.success('Thank you for your review');
+                    reset()
+                }
+            })
     };
     return (
         <div class="hero min-h-screen bg-base-200">
