@@ -84,7 +84,7 @@ const CheckOutForm = ({ item }) => {
         else {
             setCardError('');
             setCardTransaction(paymentIntent.id);
-            console.log(paymentIntent);
+            // console.log(paymentIntent);
             setCardSuccess('Successfully Paid');
             // data that will be sent to server
             const payment = {
@@ -103,7 +103,7 @@ const CheckOutForm = ({ item }) => {
                 .then(res => res.json())
                 .then(data => {
                     setLoading(false);
-                    console.log(data)
+                    // console.log(data)
                 })
         }
     };
@@ -127,7 +127,7 @@ const CheckOutForm = ({ item }) => {
             />
             {cardError && <p className="mt-4 text-error">{cardError}</p>}
             {cardSuccess && <p className="mt-4 text-success font-bold">{cardSuccess}</p>}
-            <button className="btn btn-success btn-sm mt-5" type="submit" disabled={!stripe || !clientSecret}>
+            <button className="btn btn-success btn-sm mt-5" type="submit" disabled={!stripe || !clientSecret || cardSuccess}>
                 Pay
             </button>
         </form>
