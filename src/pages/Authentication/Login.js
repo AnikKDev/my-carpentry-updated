@@ -32,7 +32,7 @@ const Login = () => {
         navigate(from, { replace: true });
     };
     return (
-        <div className=" flex justify-center lg:h-screen items-center">
+        <div className=" flex justify-center lg:min-h-screen items-center">
             <div class="card w-full md:w-96 items-center shadow-2xl bg-base-100">
                 <form onSubmit={handleSubmit(onSubmit)} class="card-body w-full lg:w-96">
                     <div class="form-control">
@@ -40,8 +40,10 @@ const Login = () => {
                             <span class="label-text">Email</span>
                         </label>
                         <input
+                            type="email" placeholder="email" class="input input-bordered"
                             {...register("email", { required: true })}
-                            type="email" placeholder="email" class="input input-bordered" />
+
+                        />
                         <span class="label-text text-error">{errors.email?.type === 'required' && "Email is required"}</span>
                     </div>
                     <div class="form-control">
@@ -49,8 +51,9 @@ const Login = () => {
                             <span class="label-text">Password</span>
                         </label>
                         <input
-                            {...register("password", { required: true })}
-                            type="password" placeholder="password" class="input input-bordered" />
+
+                            type="password" placeholder="password" class="input input-bordered"
+                            {...register("password", { required: true })} />
                         <span class="label-text text-error">{errors.password && "Password is required"}</span>
 
 
