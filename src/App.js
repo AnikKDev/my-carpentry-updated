@@ -16,6 +16,7 @@ import MyPortfolio from './pages/MyPortfolio';
 import ToolDetail from './pages/ToolDetail/ToolDetail';
 import Header from './SharedPages/Header';
 import AddProduct from './pages/Dashboard/AddProduct';
+import Payment from './pages/Dashboard/Payment';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="addareview" element={<AddAReview></AddAReview>}></Route>
           <Route path="myorders" element={<MyOrders></MyOrders>}></Route>
           <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route path="users" element={
             <RequireAdmin>
               <Users></Users>
