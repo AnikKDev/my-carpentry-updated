@@ -59,7 +59,7 @@ const MyOrders = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            // console.log(data);
                             if (data.deletedCount) {
                                 refetch();
                                 swal("Poof! Your imaginary file has been deleted!", {

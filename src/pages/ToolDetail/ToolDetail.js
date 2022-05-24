@@ -3,14 +3,27 @@ import { useParams } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import axios from "axios";
 import auth from '../../firebase.init';
+import { useForm } from "react-hook-form";
 const ToolDetail = () => {
     const [orderedQuantity, setOrderedQuantity] = useState('');
     const [user, loading, error] = useAuthState(auth);
     const [quantityError, setQuantityError] = useState('');
+    const [disableBtn, setDisableBtn] = useState(false);
 
     const { id } = useParams();
     const [toolDetail, setToolDetail] = useState({});
     const { toolName, price, minQuantity, availableQuantity, picture, detail, _id } = toolDetail;
+    const { register, watch, formState: { errors }, handleSubmit, reset } = useForm({
+        defaultValues: {
+            name: user?.displayName || '',
+            email: user?.email || '',
+            quantity: minQuantity || '',
+        }
+    });
+    const watchQuantity = watch('quantity');
+    // console.log(minQuantity);
+    // console.log(watchQuantity);
+
 
     useEffect(() => {
         (async function getTool() {
@@ -23,21 +36,20 @@ const ToolDetail = () => {
         })();
     }, [id]);
 
-
-
     // form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (orderedQuantity <= availableQuantity && orderedQuantity >= minQuantity) {
+    const onSubmit = (data) => {
+        if (parseInt(watchQuantity) <= parseInt(availableQuantity) && parseInt(watchQuantity) >= parseInt(minQuantity)) {
             console.log('perfect quantity');
             const orderData = {
                 toolId: _id,
                 toolName: toolName,
                 price: price,
-                quantity: orderedQuantity,
                 email: user.email,
-                phone: e.target.phone.value,
+                address: data.address,
+                quantity: watchQuantity,
+                phone: data.phone
             }
+            console.log(orderData);
 
             fetch('http://localhost:5000/booking', {
                 method: 'POST',
@@ -56,26 +68,10 @@ const ToolDetail = () => {
         }
 
 
-
-
-        /* setOrderedQuantity(e.target.quantity.value);
-        if (quantityOrdered < minimumOrder || quantityOrdered > availableQuantity) {
-            return
-        } else {
-            const purchaseDetail = {
-                name: user.displayName,
-                email: user.email,
-                address: e.target.address.value,
-                phone: e.target.phone.value,
-                quantity: quantityOrdered
-            }
-            console.log(purchaseDetail)
-        } */
-
-        // reset()
+        reset()
     };
     return (
-        <div className="lg:h-screen flex items-center justify-center">
+        <div className="lg:min-h-screen flex items-center justify-center">
             <div class="card lg:card-side lg:mx-24 bg-base-100 shadow-xl">
                 <figure><img className='w-96' src="https://api.lorem.space/image/album?w=400&h=400" alt="Album" /></figure>
                 <div class="card-body">
@@ -88,14 +84,15 @@ const ToolDetail = () => {
                 </div>
                 {/* order form */}
                 <div>
-                    <form onSubmit={handleSubmit} class="card-body w-full lg:w-96">
+                    <form onSubmit={handleSubmit(onSubmit)} class="card-body w-full lg:w-96">
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text">Name</span>
                             </label>
                             <input
 
-                                type="text" value={user.displayName} disabled class="input input-bordered"
+                                type="text" disabled class="input input-bordered"
+                                {...register("name")}
                             />
 
                         </div>
@@ -106,6 +103,7 @@ const ToolDetail = () => {
                             </label>
                             <input
                                 type="email" value={user.email} disabled class="input input-bordered"
+                                {...register("email")}
                             />
                         </div>
 
@@ -115,6 +113,7 @@ const ToolDetail = () => {
                             </label>
                             <input
                                 type="text" name='address' required placeholder='address' class="input input-bordered"
+                                {...register("address")}
                             />
 
                         </div>
@@ -125,6 +124,7 @@ const ToolDetail = () => {
                             </label>
                             <input
                                 type="number" name='phone' required placeholder='phone' class="input input-bordered"
+                                {...register("phone")}
                             />
 
                         </div>
@@ -134,18 +134,20 @@ const ToolDetail = () => {
                                 <span class="label-text">Order Quantity</span>
                             </label>
                             <input
-                                type="number" onChange={event => setOrderedQuantity(event?.target?.value)} required placeholder='Quantity' class="input input-bordered"
+                                type="number" required placeholder='Quantity' class="input input-bordered"
+                                {...register("quantity")}
                             />
+                            {parseInt(watchQuantity) > parseInt(availableQuantity) || parseInt(watchQuantity) < parseInt(minQuantity) && <p className="text-error">Please check minimum and maximum order quota</p>}
 
 
                         </div>
 
 
                         <div class="form-control mt-6">
-                            <button type="submit" class={`btn btn-primary`}>Continue Purchasing</button>
+                            <button type="submit" class='btn btn-primary ' disabled={parseInt(watchQuantity) > parseInt(availableQuantity) || parseInt(watchQuantity) < parseInt(minQuantity)} >Continue Purchasing</button>
                         </div>
 
-                    </form>
+                    </form >
                 </div>
             </div>
         </div>
