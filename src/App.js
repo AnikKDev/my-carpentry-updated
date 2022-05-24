@@ -15,6 +15,7 @@ import Home from './pages/Home/Home';
 import MyPortfolio from './pages/MyPortfolio';
 import ToolDetail from './pages/ToolDetail/ToolDetail';
 import Header from './SharedPages/Header';
+import AddProduct from './pages/Dashboard/AddProduct';
 
 function App() {
   return (
@@ -34,9 +35,15 @@ function App() {
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path="addareview" element={<AddAReview></AddAReview>}></Route>
           <Route path="myorders" element={<MyOrders></MyOrders>}></Route>
+          <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
           <Route path="users" element={
             <RequireAdmin>
               <Users></Users>
+            </RequireAdmin>
+          }></Route>
+          <Route path="addproduct" element={
+            <RequireAdmin>
+              <AddProduct></AddProduct>
             </RequireAdmin>
           }></Route>
         </Route>
