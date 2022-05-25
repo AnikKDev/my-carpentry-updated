@@ -1,0 +1,9 @@
+.summary-container {
+    background-image: url('../../image/bg-1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 624px;
+    background-attachment: fixed;
+
+}
