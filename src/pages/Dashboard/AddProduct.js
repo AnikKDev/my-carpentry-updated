@@ -32,7 +32,7 @@ const AddProduct = () => {
                         availableQuantity: data.availablequantity
                     };
                     // send to main server and db
-                    fetch('http://localhost:5000/tools', {
+                    fetch('https://whispering-sierra-85456.herokuapp.com/tools', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

@@ -13,7 +13,7 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [orders, setOrders] = useState([]);
 
-    const { data: bookings, isLoading, refetch } = useQuery('booking', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
+    const { data: bookings, isLoading, refetch } = useQuery('booking', () => fetch(`https://whispering-sierra-85456.herokuapp.com/booking?email=${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -51,7 +51,7 @@ const MyOrders = () => {
             .then((willDelete) => {
                 if (willDelete) {
                     // delete api from db
-                    fetch(`http://localhost:5000/booking/${id}`, {
+                    fetch(`https://whispering-sierra-85456.herokuapp.com/booking/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

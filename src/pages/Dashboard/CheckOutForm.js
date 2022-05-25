@@ -14,7 +14,7 @@ const CheckOutForm = ({ item }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://whispering-sierra-85456.herokuapp.com/create-payment-intent", {
             method: "POST",
             headers: { "content-Type": "application/json", authorization: `Bearer ${localStorage.getItem('accessToken')}` },
             body: JSON.stringify({ price }),
@@ -92,7 +92,7 @@ const CheckOutForm = ({ item }) => {
                 transactionId: paymentIntent.id
             }
             // get updated data from backend
-            fetch(`http://localhost:5000/booking/${_id}`, {
+            fetch(`https://whispering-sierra-85456.herokuapp.com/booking/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

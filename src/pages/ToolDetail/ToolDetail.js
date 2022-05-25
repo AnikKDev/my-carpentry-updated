@@ -28,7 +28,7 @@ const ToolDetail = () => {
     useEffect(() => {
         (async function getTool() {
             try {
-                const response = await axios.get(`http://localhost:5000/tool/${id}`);
+                const response = await axios.get(`https://whispering-sierra-85456.herokuapp.com/tool/${id}`);
                 setToolDetail(response.data);
             } catch (error) {
                 console.error(error);
@@ -51,7 +51,7 @@ const ToolDetail = () => {
             }
             console.log(orderData);
 
-            fetch('http://localhost:5000/booking', {
+            fetch('https://whispering-sierra-85456.herokuapp.com/booking', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

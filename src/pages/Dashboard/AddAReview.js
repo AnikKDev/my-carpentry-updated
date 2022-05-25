@@ -22,7 +22,7 @@ const AddAReview = () => {
                 rating: data.rating,
                 comment: data.comment
             }
-            fetch('http://localhost:5000/reviews', {
+            fetch('https://whispering-sierra-85456.herokuapp.com/reviews', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

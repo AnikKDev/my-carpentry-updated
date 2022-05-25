@@ -11,7 +11,7 @@ const MyProfile = () => {
     const [userInfo, setUserInfo] = useState({})
 
     // get user with specific id
-    const { data: updatedUser, isLoading, refetch } = useQuery('user', () => fetch(`http://localhost:5000/user/${user.email}`, {
+    const { data: updatedUser, isLoading, refetch } = useQuery('user', () => fetch(`https://whispering-sierra-85456.herokuapp.com/user/${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -39,7 +39,7 @@ const MyProfile = () => {
             education: education,
             linkedin: linkedin
         };
-        fetch(`http://localhost:5000/myprofile/${user.email}`, {
+        fetch(`https://whispering-sierra-85456.herokuapp.com/myprofile/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

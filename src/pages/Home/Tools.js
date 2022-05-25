@@ -5,7 +5,7 @@ import Tool from './Tool';
 const Tools = () => {
     const [allTools, setAllTools] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/tools')
+        axios.get('https://whispering-sierra-85456.herokuapp.com/tools')
             .then(function (response) {
                 // handle success
                 setAllTools(response.data);
