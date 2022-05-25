@@ -10,34 +10,41 @@ const AddAReview = () => {
     // form submission
     const onSubmit = (data) => {
         // console.log(data)
-        // post review to server
-        const review = {
-            name: user.displayName,
-            rating: data.rating,
-            comment: data.comment
+        if (data.rating > 5 || data.rating < 1) {
+            // console.log('invalid')
+            toast.error('Please give a rating between 1-5')
         }
-        fetch('http://localhost:5000/reviews', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
-            },
-            body: JSON.stringify(review)
-        })
-            .then(res => res.json())
-            .then(result => {
-                if (result.acknowledged) {
-                    toast.success('Thank you for your review');
-                    reset()
-                }
+        // post review to server
+        else {
+            // console.log('valid')
+            const review = {
+                name: user.displayName,
+                rating: data.rating,
+                comment: data.comment
+            }
+            fetch('http://localhost:5000/reviews', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(review)
             })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.acknowledged) {
+                        toast.success('Thank you for your review');
+                        reset()
+                    }
+                })
+        }
     };
     return (
-        <div class="hero min-h-screen bg-base-200">
+        <div class="hero min-h-screen ">
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <div class="text-center lg:text-left">
-                    <h1 class="text-5xl font-bold">Login now!</h1>
-                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <h1 class="text-5xl font-bold text-primary ">Your Opinion Matters...!</h1>
+
                 </div>
                 <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 
@@ -50,7 +57,7 @@ const AddAReview = () => {
                             <input type="number" placeholder="../5" class="input input-bordered"
                                 {...register("rating", { required: true })}
                             />
-                            <span class="label-text text-error">{errors.rating && "Please add a rating 1-5"}</span>
+                            <span class="label-text text-error">{errors.rating?.type === 'required' && "Please add a rating 1-5"}</span>
                         </div>
 
                         <div class="form-control">
@@ -60,7 +67,7 @@ const AddAReview = () => {
                             <textarea type="text" placeholder="write something" class="input input-bordered"
                                 {...register("comment", { required: true })}
                             />
-                            <span class="label-text text-error">{errors.comment && "Please write your comment about our service."}</span>
+                            <span class="label-text text-error">{errors.comment?.type === 'required' && "Please write your comment about our service."}</span>
                         </div>
                         <div class="form-control mt-6">
                             <button class="btn btn-primary">Submit</button>

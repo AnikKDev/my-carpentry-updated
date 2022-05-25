@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
 
@@ -24,21 +24,21 @@ const Dashboard = () => {
 
 
                 </div>
-                <div class="drawer-side">
+                <div class="drawer-side ">
                     <label for="dashboard-sidebar" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                    <ul class="menu p-4 mr-3 rounded-r-lg overflow-y-auto w-80 bg-base-200 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         {!admin && <>
-                            <li><Link to="/dashboard/myorders">MyOrders</Link></li>
-                            <li><Link to="/dashboard/addareview">Add A Review</Link></li>
+                            <li className="my-2"><NavLink to="/dashboard/myorders">MyOrders</NavLink></li>
+                            <li className="my-2"><NavLink to="/dashboard/addareview">Add A Review</NavLink></li>
                         </>}
 
-                        <li><Link to="/dashboard/myprofile">My Profile</Link></li>
+                        <li className="my-2"><NavLink to="/dashboard/myprofile">My Profile</NavLink></li>
 
                         {admin &&
                             <>
-                                <li><Link to="/dashboard/addproduct">Add Product</Link></li>
-                                <li><Link to="/dashboard/users">All Users</Link></li>
+                                <li className="my-2"><NavLink to="/dashboard/addproduct">Add Product</NavLink></li>
+                                <li className="my-2"><NavLink to="/dashboard/users">Make Admin</NavLink></li>
                             </>
                         }
                     </ul>

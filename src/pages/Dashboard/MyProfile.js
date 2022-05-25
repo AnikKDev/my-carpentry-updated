@@ -59,18 +59,18 @@ const MyProfile = () => {
             })
     };
     return (
-        <div class="hero min-h-screen bg-base-200">
+        <div class="hero min-h-screen ">
             <div class="hero-content flex-col lg:flex-row">
-                <div class=" lg:text-left">
+                <div class=" lg:text-left lg:mr-10">
                     <div class="card w-96 bg-base-100 shadow-xl">
                         <div class="card-body">
-                            <h2 class="card-title">My Profile</h2>
-                            <p>Email: {user.email}</p>
-                            <p>Name: {user.displayName || userInfo.name}</p>
-                            <p>Location: {userInfo.location}</p>
-                            <p>Education: {userInfo.education}</p>
-                            <p>LinkedIn URL: {userInfo.linkedin}</p>
-                            <p>Phone: {userInfo.phone}</p>
+                            <h2 class="card-title text-2xl mb-3 text-primary">My Profile</h2>
+                            <p className="my-2"><span className="font-bold uppercase ">Email:</span> {user?.email}</p>
+                            <p className="my-2"><span className="font-bold uppercase ">Name:</span> {user?.displayName || userInfo?.name}</p>
+                            <p className="my-2"><span className="font-bold uppercase ">Location:</span> {userInfo?.location}</p>
+                            <p className="my-2"><span className="font-bold uppercase ">Education:</span> {userInfo?.education}</p>
+                            <p className="my-2"><span className="font-bold uppercase ">LinkedIn URL:</span> {userInfo?.linkedin}</p>
+                            <p className="my-2"><span className="font-bold uppercase ">Phone:</span> {userInfo?.phone}</p>
                         </div>
                     </div>
 
@@ -121,7 +121,7 @@ const MyProfile = () => {
                                 <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-7 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (1234567890)</label>
                                 {errors.phone?.type === 'required' && <span className="text-error">Phone number is required</span>}
                             </div>
-                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+                            <button type="submit" class="text-white btn btn-sm btn-primary">Update</button>
                         </form>
                     </div>
                 </div>

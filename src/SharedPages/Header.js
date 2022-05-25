@@ -38,7 +38,11 @@ const Header = () => {
                 </ul>
             </div>
             <div class="navbar-end">
-                {user ? <button onClick={logout} class="btn btn-outline btn-primary">Logout</button> : <Link to="/login" class="btn btn-outline btn-primary">Login</Link>}
+                {user ?
+                    <>
+                        <h5 className="text-gray-500 mx-3 font-semibold text-xl ">{user?.displayName}</h5>
+                        <button onClick={logout} class="btn btn-outline btn-primary">Logout</button>
+                    </> : <Link to="/login" class="btn btn-outline btn-primary">Login</Link>}
             </div>
         </div>
     );

@@ -54,7 +54,7 @@ const Login = () => {
 
                             type="password" placeholder="password" class="input input-bordered"
                             {...register("password", { required: true })} />
-                        <span class="label-text text-error">{errors.password && "Password is required"}</span>
+                        <span class="label-text text-error">{errors.password?.type === 'required' && "Password is required"}</span>
 
 
                     </div>
