@@ -16,10 +16,13 @@ const Tools = () => {
             });
     }, []);
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-12">
-            {
-                allTools.map(tool => <Tool tool={tool} key={tool._id}></Tool>)
-            }
+        <div className="my-5">
+            <h2 className="text-center text-4xl font-bold my-8 text-primary">TOOLS</h2>
+            <div className="grid my-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-16">
+                {
+                    allTools.map(tool => <Tool tool={tool} key={tool._id}></Tool>).reverse().slice(0, 3)
+                }
+            </div>
         </div>
     );
 };
