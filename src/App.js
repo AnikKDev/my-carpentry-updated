@@ -17,6 +17,7 @@ import ToolDetail from './pages/ToolDetail/ToolDetail';
 import Header from './SharedPages/Header';
 import AddProduct from './pages/Dashboard/AddProduct';
 import Payment from './pages/Dashboard/Payment';
+import Footer from './SharedPages/Footer';
 
 function App() {
   return (
@@ -54,6 +55,8 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
       </Routes>
+
+      <Footer></Footer>
 
       <Toaster
         position="top-center"
