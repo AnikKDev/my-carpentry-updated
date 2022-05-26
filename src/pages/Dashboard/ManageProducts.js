@@ -6,7 +6,7 @@ import LoadingSpinner from '../../SharedPages/LoadingSpinner';
 
 const ManageProducts = () => {
 
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch('http://localhost:5000/bookings', {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch('https://whispering-sierra-85456.herokuapp.com/bookings', {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -28,7 +28,7 @@ const ManageProducts = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/bookings/${id}`, {
+                    fetch(`https://whispering-sierra-85456.herokuapp.com/bookings/${id}`, {
                         method: 'DELETE',
                         headers: {
                             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -57,8 +57,9 @@ const ManageProducts = () => {
     }
     return (
         <div>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <h2 className="text-2xl my-5 text-primary">Manage Products</h2>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
@@ -74,7 +75,7 @@ const ManageProducts = () => {
                     <tbody>
                         {
                             orders.map((order, index) =>
-                                <tr>
+                                <tr key={order._id}>
                                     <th>{index + 1}</th>
                                     <td>{order.toolName}</td>
                                     <td>{order.email}</td>

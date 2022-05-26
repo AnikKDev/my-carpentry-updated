@@ -81,10 +81,10 @@ const ToolDetail = () => {
     };
     return (
         <div className="lg:min-h-screen flex items-center justify-center my-28 ">
-            <div class="card lg:card-side lg:mx-24 bg-base-100 shadow-xl py-12 px-6">
+            <div className="card lg:card-side lg:mx-24 bg-base-100 shadow-xl py-12 px-6">
                 <figure><img className='w-96' src={picture} alt="Album" /></figure>
-                <div class="card-body">
-                    <h2 class="text-3xl font-bold uppercase">{toolName}</h2>
+                <div className="card-body">
+                    <h2 className="text-3xl font-bold uppercase">{toolName}</h2>
                     <p>{detail}</p>
                     <h4 className="text-xl font-semibold"><span className="text-primary">Price</span> (per piece): ${price}</h4>
                     <h4 className="text-xl font-semibold"><span className="text-primary">Minimum Quantity</span>: {minQuantity}</h4>
@@ -93,58 +93,58 @@ const ToolDetail = () => {
                 </div>
                 {/* order form */}
                 <div>
-                    <form onSubmit={handleSubmit(onSubmit)} class="card-body w-full lg:w-96">
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Name</span>
+                    <form onSubmit={handleSubmit(onSubmit)} className="card-body w-full lg:w-96">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
                             </label>
                             <input
 
-                                type="text" disabled class="input input-bordered"
+                                type="text" disabled className="input input-bordered"
                                 {...register("name")}
                             />
 
                         </div>
 
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Email</span>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
                             </label>
                             <input
-                                type="email" disabled class="input input-bordered"
+                                type="email" disabled className="input input-bordered"
                                 {...register("email")}
                             />
                         </div>
 
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Address</span>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Address</span>
                             </label>
                             <input
-                                type="text" name='address' required placeholder='address' class="input input-bordered"
+                                type="text" name='address' required placeholder='address' className="input input-bordered"
                                 {...register("address")}
                             />
 
                         </div>
 
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Phone</span>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Phone</span>
                             </label>
                             <input
-                                type="number" name='phone' required placeholder='phone' class="input input-bordered"
+                                type="number" name='phone' required placeholder='phone' className="input input-bordered"
                                 {...register("phone")}
                             />
 
                         </div>
 
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Order Quantity</span>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Order Quantity</span>
                             </label>
                             <input
                                 defaultValue={minQuantity || ''}
-                                type="number" required placeholder='Quantity' class="input input-bordered"
+                                type="number" required placeholder='Quantity' className="input input-bordered"
                                 {...register("quantity")}
                             />
                             {(parseInt(watchQuantity) > parseInt(availableQuantity) || parseInt(watchQuantity) < parseInt(minQuantity)) && <p className="text-error">Please check minimum and maximum order quota</p>}
@@ -153,7 +153,7 @@ const ToolDetail = () => {
                         </div>
 
 
-                        <div class="form-control mt-6">
+                        <div className="form-control mt-6">
                             <button type="submit" class='btn btn-primary ' disabled={parseInt(watchQuantity) > parseInt(availableQuantity) || parseInt(watchQuantity) < parseInt(minQuantity)} >Continue Purchasing</button>
                         </div>
 

@@ -40,37 +40,37 @@ const AddAReview = () => {
         }
     };
     return (
-        <div class="hero min-h-screen ">
-            <div class="hero-content flex-col lg:flex-row-reverse">
-                <div class="text-center lg:text-left">
-                    <h1 class="text-5xl font-bold text-primary ">Your Opinion Matters...!</h1>
+        <div className="hero min-h-screen ">
+            <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="text-center lg:text-left">
+                    <h1 className="text-5xl font-bold text-primary ">Your Opinion Matters...!</h1>
 
                 </div>
-                <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 
-                    <form onSubmit={handleSubmit(onSubmit)} class="card-body">
+                    <form onSubmit={handleSubmit(onSubmit)} className="card-body">
 
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Ratings</span>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Ratings</span>
                             </label>
-                            <input type="number" placeholder="../5" class="input input-bordered"
+                            <input type="number" placeholder="../5" className="input input-bordered"
                                 {...register("rating", { required: true })}
                             />
-                            <span class="label-text text-error">{errors.rating?.type === 'required' && "Please add a rating 1-5"}</span>
+                            <span className="label-text text-error">{errors.rating?.type === 'required' && "Please add a rating 1-5"}</span>
                         </div>
 
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Write something</span>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Write something</span>
                             </label>
-                            <textarea type="text" placeholder="write something" class="input input-bordered"
+                            <textarea type="text" placeholder="write something" className="input input-bordered"
                                 {...register("comment", { required: true })}
                             />
-                            <span class="label-text text-error">{errors.comment?.type === 'required' && "Please write your comment about our service."}</span>
+                            <span className="label-text text-error">{errors.comment?.type === 'required' && "Please write your comment about our service."}</span>
                         </div>
-                        <div class="form-control mt-6">
-                            <button class="btn btn-primary">Submit</button>
+                        <div className="form-control mt-6">
+                            <button className="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>

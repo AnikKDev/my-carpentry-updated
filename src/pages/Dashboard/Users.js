@@ -37,11 +37,11 @@ const Users = () => {
     }
     return (
         <div>
-            <h2 className="text-2xl">
+            <h2 className="text-2xl my-5 text-primary">
                 All Users
             </h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -57,7 +57,7 @@ const Users = () => {
                                     <th>{index + 1}</th>
                                     <td>{user.email}</td>
                                     <td>Quality Control Specialist</td>
-                                    <td>{user.role !== 'admin' && <button onClick={() => makeAdmin(user.email)} className="btn btn-sm">Make Admin</button>}</td>
+                                    <td>{user.role !== 'admin' ? <button onClick={() => makeAdmin(user.email)} className="btn btn-sm">Make Admin</button> : <span className="text-primary font-bold">Admin</span>}</td>
                                 </tr>
                             )
                         }

@@ -61,43 +61,43 @@ const Login = () => {
     };
     return (
         <div className=" flex justify-center lg:min-h-screen items-center">
-            <div class="card w-full md:w-96 items-center shadow-2xl bg-base-100">
-                <form onSubmit={handleSubmit(onSubmit)} class="card-body w-full lg:w-96">
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Email</span>
+            <div className="card w-full md:w-96 items-center shadow-2xl bg-base-100">
+                <form onSubmit={handleSubmit(onSubmit)} className="card-body w-full lg:w-96">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
                         </label>
                         <input
-                            type="email" placeholder="email" class="input input-bordered"
+                            type="email" placeholder="email" className="input input-bordered"
                             {...register("email", { required: true })}
 
                         />
-                        <span class="label-text text-error">{errors.email?.type === 'required' && "Email is required"}</span>
+                        <span className="label-text text-error">{errors.email?.type === 'required' && "Email is required"}</span>
                     </div>
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Password</span>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Password</span>
                         </label>
                         <input
 
-                            type="password" placeholder="password" class="input input-bordered"
+                            type="password" placeholder="password" className="input input-bordered"
                             {...register("password", { required: true })} />
-                        <span class="label-text text-error">{errors.password?.type === 'required' && "Password is required"}</span>
+                        <span className="label-text text-error">{errors.password?.type === 'required' && "Password is required"}</span>
 
 
                     </div>
-                    <div class="form-control mt-6">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                    <div className="form-control mt-6">
+                        <button type="submit" className="btn btn-primary">Login</button>
                     </div>
 
                 </form>
-                <label class="my-2">
-                    <button onClick={handlePassReset} class="btn btn-link px-0">Forgot password?</button>
+                <label className="my-2">
+                    <button onClick={handlePassReset} className="btn btn-link px-0">Forgot password?</button>
                 </label>
-                <div class="divider">OR</div>
+                <div className="divider">OR</div>
                 <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary w-80">SIGN iN WITH GOOGLE</button>
-                <label class="mt-2">
-                    Don't have an account?<Link to="/signup" class="btn btn-link px-0">Sign Up</Link>
+                <label className="mt-2">
+                    Don't have an account?<Link to="/signup" className="btn btn-link px-0">Sign Up</Link>
                 </label>
             </div>
         </div>

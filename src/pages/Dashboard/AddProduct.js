@@ -54,81 +54,85 @@ const AddProduct = () => {
         // reset()
     };
     return (
-        <div className=" flex justify-center">
-            <div class="card w-full md:mt-11 md:w-96 items-center shadow-2xl bg-base-100">
-                <form onSubmit={handleSubmit(onSubmit)} class="card-body w-full lg:w-96">
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Name</span>
-                        </label>
-                        <input
-                            {...register("name", { required: true })}
-                            type="text" placeholder="Tool Name" class="input input-bordered" />
-                        <span class="label-text text-error">{errors.email?.type === 'required' && "Name is required"}</span>
-                    </div>
 
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Detail</span>
-                        </label>
-                        <textarea
-                            {...register("detail", { required: true })}
-                            placeholder="Tool Detail" class="input input-bordered" />
-                        <span class="label-text text-error">{errors.email?.type === 'required' && "Detail is required"}</span>
-                    </div>
+        < div >
+            <h2 className="text-2xl my-5 text-primary">Add Tool</h2>
+            <div className=" flex justify-center">
+                <div className="card w-full md:mt-11 md:w-96 items-center shadow-2xl bg-base-100">
+                    <form onSubmit={handleSubmit(onSubmit)} className="card-body w-full lg:w-96">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input
+                                {...register("name", { required: true })}
+                                type="text" placeholder="Tool Name" className="input input-bordered" />
+                            <span className="label-text text-error">{errors.email?.type === 'required' && "Name is required"}</span>
+                        </div>
 
-
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Picture</span>
-                        </label>
-                        <input
-                            type="file" placeholder="Picture" class="input input-bordered"
-                            {...register("image", { required: true })}
-                        />
-                        <span class="label-text text-error">{errors.image?.type === 'required' && "Picure is required"}</span>
-                    </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Detail</span>
+                            </label>
+                            <textarea
+                                {...register("detail", { required: true })}
+                                placeholder="Tool Detail" className="input input-bordered" />
+                            <span className="label-text text-error">{errors.email?.type === 'required' && "Detail is required"}</span>
+                        </div>
 
 
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Price</span>
-                        </label>
-                        <input
-                            {...register("price", { required: true })}
-                            type="number" placeholder="Price Piece" class="input input-bordered" />
-                        <span class="label-text text-error">{errors.price?.type === 'required' && "Price is required"}</span>
-                    </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Picture</span>
+                            </label>
+                            <input
+                                type="file" placeholder="Picture" className="input input-bordered"
+                                {...register("image", { required: true })}
+                            />
+                            <span className="label-text text-error">{errors.image?.type === 'required' && "Picure is required"}</span>
+                        </div>
 
 
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Minimum Quantity</span>
-                        </label>
-                        <input
-                            {...register("minquantity", { required: true })}
-                            type="number" placeholder="Minimum Quantity" class="input input-bordered" />
-                        <span class="label-text text-error">{errors.minquantity?.type === 'required' && "Minimum Quantity is required"}</span>
-                    </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Price</span>
+                            </label>
+                            <input
+                                {...register("price", { required: true })}
+                                type="number" placeholder="Price Piece" className="input input-bordered" />
+                            <span className="label-text text-error">{errors.price?.type === 'required' && "Price is required"}</span>
+                        </div>
 
 
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">Available Quantity</span>
-                        </label>
-                        <input
-                            {...register("availablequantity", { required: true })}
-                            type="number" placeholder="Available Quantity" class="input input-bordered" />
-                        <span class="label-text text-error">{errors.availablequantity?.type === 'required' && "Available Quantity is required"}</span>
-                    </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Minimum Quantity</span>
+                            </label>
+                            <input
+                                {...register("minquantity", { required: true })}
+                                type="number" placeholder="Minimum Quantity" className="input input-bordered" />
+                            <span className="label-text text-error">{errors.minquantity?.type === 'required' && "Minimum Quantity is required"}</span>
+                        </div>
 
-                    <div class="form-control mt-6">
-                        <button type="submit" class="btn btn-primary">Add Tool</button>
-                    </div>
 
-                </form>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Available Quantity</span>
+                            </label>
+                            <input
+                                {...register("availablequantity", { required: true })}
+                                type="number" placeholder="Available Quantity" className="input input-bordered" />
+                            <span className="label-text text-error">{errors.availablequantity?.type === 'required' && "Available Quantity is required"}</span>
+                        </div>
+
+                        <div className="form-control mt-6">
+                            <button type="submit" className="btn btn-primary">Add Tool</button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
-        </div>
+        </div >
     );
 };
 
