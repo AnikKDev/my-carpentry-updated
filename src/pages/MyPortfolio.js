@@ -1,16 +1,17 @@
 import React from 'react';
-
+import profile from '../image/1653497959006.png';
+import './MyPortfolio.css';
 const MyPortfolio = () => {
     return (
-        <div class="hero min-h-screen bg-base-200">
+        <div class="hero min-h-screen portfolio-container">
             <div class="hero-content flex-col lg:flex-row-reverse">
-                <img src="https://api.lorem.space/image/movie?w=260&h=400" class="max-w-sm rounded-lg shadow-2xl" />
+                <img src={profile} class="max-w-sm rounded-lg shadow-2xl" />
                 <div>
                     <h1 class="text-5xl font-bold">Portfolio</h1>
-                    <p class="py-6">Name: Anik Dev</p>
-                    <p class="py-6">Email: anikdev2016@gmail.com</p>
-                    <p class="py-6">Education Qualification: BSC undergraduate in Chemical engineering.</p>
-                    <p class="py-6">Technologies That I Can Use As A web Developer:
+                    <h4 class="py-2 mt-6 text-xl"><span className="font-bold">Name:</span> Anik Dev</h4>
+                    <h4 class="py-2 text-xl"><span className="font-bold">Email:</span> anikdev2016@gmail.com</h4>
+                    <h4 class="py-2 text-xl"><span className="font-bold">Education Qualification:</span> BSC undergraduate in Chemical engineering.</h4>
+                    <p class="py-6 text-xl">Technologies That I Can Use As A web Developer:
                         <ul>
                             <li className="list-disc list-inside" >HTML,HTML5</li>
                             <li className="list-disc list-inside" >CSS, CSS3</li>
@@ -31,7 +32,7 @@ const MyPortfolio = () => {
                             <li className="list-disc list-inside" >MongoDB</li>
                         </ul>
                     </p>
-                    <p class="py-6">Recent 3 Projects: </p>
+                    <p class="py-6 font-bold">Recent 3 Projects: </p>
                 </div>
             </div>
         </div>

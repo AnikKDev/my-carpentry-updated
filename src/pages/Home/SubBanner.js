@@ -3,7 +3,11 @@ import React from 'react';
 const SubBanner = () => {
     return (
         <div className='flex items-center justify-center'>
-            <div className="text-center w-3/5">
+            <div
+                data-aos="fade-up"
+                data-aos-duration="800"
+
+                className="text-center w-3/5">
                 <h4 className="text-lg font-semibold">Welcome to our website</h4>
                 <h2 className="text-5xl my-3 font-bold text-primary">My Carpenry</h2>
                 <p className="text-xl mb-6 font-mono">One of the leading carpentry tools providing inc. around the globe </p>

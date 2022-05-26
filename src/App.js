@@ -18,8 +18,19 @@ import Header from './SharedPages/Header';
 import AddProduct from './pages/Dashboard/AddProduct';
 import Payment from './pages/Dashboard/Payment';
 import Footer from './SharedPages/Footer';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
+import NotFound from './pages/NotFound';
+
 
 function App() {
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+
   return (
     <div >
       <Header></Header>
@@ -54,6 +65,7 @@ function App() {
         <Route path="/myportfolio" element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/*" element={<NotFound />}></Route>
       </Routes>
 
       <Footer></Footer>
