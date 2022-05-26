@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import useToken from '../../hooks/useToken';
+import LoadingSpinner from '../../SharedPages/LoadingSpinner';
+import toast from 'react-hot-toast';
 const SignUp = () => {
     const navigate = useNavigate();
 
@@ -20,7 +22,7 @@ const SignUp = () => {
         const { name } = data;
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: name });
-        reset()
+        reset();
     };
 
     // sign in with google
@@ -29,9 +31,19 @@ const SignUp = () => {
 
     const [token] = useToken(user || gUser);
 
-    if (token) {
-        navigate('/home')
+    useEffect(() => {
+        if (token) {
+            navigate('/home')
+        }
+    }, [token, navigate]);
+
+    if (error || gError) {
+        toast.error('Something went wrong with sign up. try again')
     }
+
+    if (loading || gLoading) {
+        return <LoadingSpinner />
+    };
     return (
         <div className=" flex justify-center lg:h-screen items-center">
             <div class="card w-full md:w-96 items-center shadow-2xl bg-base-100">

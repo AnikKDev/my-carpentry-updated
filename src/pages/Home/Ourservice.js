@@ -16,7 +16,7 @@ const Ourservice = () => {
                         <h1 class="text-5xl font-bold text-primary">10 Years of</h1>
                         <h1 class="text-5xl font-bold text-white">Amazing Project</h1>
                         <h3 class="py-6 text-xl text-white">Selected study case from our clients</h3>
-                        <p className="text-gray-300">We got our experts from around the world and they continue working as smart as possible to get data from our user experience and applying them to regular product basis.</p>
+                        <p className="text-gray-300 font-['Patrick_Hand']">We got our experts from around the world and they continue working as smart as possible to get data from our user experience and applying them to regular product basis.</p>
                     </div>
                 </div>
             </div>

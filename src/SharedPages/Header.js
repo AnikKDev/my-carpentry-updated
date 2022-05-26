@@ -30,7 +30,7 @@ const Header = () => {
                         {menuOptions}
                     </ul>
                 </div>
-                <Link to="/" class="btn btn-ghost normal-case text-xl">MyCarpentry</Link>
+                <Link to="/" class="btn btn-ghost normal-case text-4xl font-['Acme']">MyCarpentry</Link>
             </div>
             <div class="navbar-center hidden lg:flex ">
                 <ul class="menu menu-horizontal p-0">
@@ -41,6 +41,7 @@ const Header = () => {
                 {user ?
                     <>
                         <h5 className="text-gray-500 mx-3 font-semibold text-xl ">{user?.displayName}</h5>
+                        <h5 className="text-gray-500 mx-3 font-semibold text-xl ">{user?.email}</h5>
                         <button onClick={logout} class="btn btn-outline btn-primary">Logout</button>
                     </> : <Link to="/login" class="btn btn-outline btn-primary">Login</Link>}
             </div>

@@ -43,7 +43,7 @@ const MyOrders = () => {
 
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "Once deleted, you will not be able to recover this Order!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -60,9 +60,9 @@ const MyOrders = () => {
                         .then(res => res.json())
                         .then(data => {
                             // console.log(data);
-                            if (data.deletedCount) {
+                            if (data.deletedCount > 0) {
                                 refetch();
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("Order deleted", {
                                     icon: "success",
                                 });
                             } else {
@@ -99,11 +99,11 @@ const MyOrders = () => {
                                     <td>{item.toolName}</td>
                                     <td>{item.quantity}</td>
                                     <td>
-                                        {(item.price && !item.paid) ? <Link to={`/dashboard/payment/${item._id}`}><button className="btn btn-success">Pay</button></Link> : <div>
+                                        {(item.price && !item.paid) ? <Link to={`/dashboard/payment/${item._id}`}><button className="btn btn-sm btn-success">Pay</button></Link> : <div>
                                             <span className="text-success">PAID</span>
                                             <p className="text-success font-bold">TransactionID: {item.transactionId}</p>
                                         </div>}
-                                        {!item.paid && <button className="btn btn-warning" onClick={() => handleDeleteOrder(item._id)}>Delete</button>}
+                                        {!item.paid && <button className="btn btn-sm btn-primary mx-3" onClick={() => handleDeleteOrder(item._id)}>Delete</button>}
                                     </td>
                                 </tr>)
                         }

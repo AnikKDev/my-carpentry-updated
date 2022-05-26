@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
+import { toast } from 'react-hot-toast';
+import LoadingSpinner from '../../SharedPages/LoadingSpinner';
 
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
-
     // sign in with email
     const [
         signInWithEmailAndPassword,
@@ -19,17 +20,44 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
+
+    const email = watch('email');
     // form submission
     const onSubmit = ({ email, password }) => {
         signInWithEmailAndPassword(email, password);
-        reset()
+        reset();
     };
+    // password reset mail
+    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(
+        auth
+    );
+    const handlePassReset = async () => {
+        if (email && !resetError) {
+            console.log('success')
+            await sendPasswordResetEmail(email);
+            toast.success('Mail has been sent successfully');
+        }
+        else {
+            toast.error('Something went wrong. Check mail input.')
+        }
+    };
+
 
     // sign in with google
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [token] = useToken(user || gUser);
-    if (token) {
-        navigate(from, { replace: true });
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        };
+    }, [token, from, navigate]);
+
+    if (error || gError) {
+        toast.error('Ooops! try again')
+    };
+
+    if (loading || gLoading) {
+        return <LoadingSpinner />
     };
     return (
         <div className=" flex justify-center lg:min-h-screen items-center">
@@ -64,7 +92,7 @@ const Login = () => {
 
                 </form>
                 <label class="my-2">
-                    <button class="btn btn-link px-0">Forgot password?</button>
+                    <button onClick={handlePassReset} class="btn btn-link px-0">Forgot password?</button>
                 </label>
                 <div class="divider">OR</div>
                 <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-primary w-80">SIGN iN WITH GOOGLE</button>

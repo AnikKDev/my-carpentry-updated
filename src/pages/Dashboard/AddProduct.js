@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-
+import { toast } from 'react-hot-toast';
 const AddProduct = () => {
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
@@ -8,7 +8,7 @@ const AddProduct = () => {
     const imagebbKey = '6010a2c2321ad51db343a9e42ee5000b';
 
     const onSubmit = async data => {
-        console.log(data);
+        // console.log(data);
         // get the image from imgbb
         const image = data.image[0];
         const formData = new FormData();
@@ -42,7 +42,11 @@ const AddProduct = () => {
                     })
                         .then(res => res.json())
                         .then(insertedTool => {
-                            console.log(insertedTool)
+                            // console.log(insertedTool)
+                            if (insertedTool.acknowledged === true) {
+                                reset();
+                                toast.success('Item added')
+                            }
                         })
 
                 }

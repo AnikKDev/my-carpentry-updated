@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Bree+Serif&family=Patrick+Hand&display=swap');
+
 .App {
   text-align: center;
 }

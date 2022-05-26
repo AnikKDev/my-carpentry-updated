@@ -10,7 +10,7 @@ const Dashboard = () => {
     // console.log(admin)
     const location = useLocation();
     return (
-        <div>
+        <div className="mb-28">
 
             <div className="flex justify-end my-3 mx-2">
                 {location.pathname === '/dashboard' && <label for="dashboard-sidebar" class="btn btn-sm drawer-button lg:hidden">Open Dashboard</label>}
@@ -39,6 +39,7 @@ const Dashboard = () => {
                             <>
                                 <li className="my-2"><NavLink to="/dashboard/addproduct">Add Product</NavLink></li>
                                 <li className="my-2"><NavLink to="/dashboard/users">Make Admin</NavLink></li>
+                                <li className="my-2"><NavLink to="/dashboard/manageproducts">Manage Products</NavLink></li>
                             </>
                         }
                     </ul>

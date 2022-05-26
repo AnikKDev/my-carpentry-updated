@@ -12,13 +12,13 @@ const BusinessSummary = () => {
                 data-aos="fade-right"
                 data-aos-duration="700"
                 data-aos-delay="100"
-                className="text-4xl text-center my-5 text-primary font-bold">WE ARE THE BEST MANUFACTURER FOR CARPENTRY</h1>
+                className="text-4xl text-center my-5 text-primary font-bold font-['Bree_Serif']">WE ARE THE BEST MANUFACTURER FOR CARPENTRY</h1>
             <h4
                 data-aos="fade-right"
                 data-aos-duration="700"
                 data-aos-delay="200"
 
-                className="text-2xl text-center text-gray-500">We provide what our users need</h4>
+                className="text-2xl text-center text-gray-500 font-['Patrick_Hand']">We provide what our users need</h4>
             <div
                 data-aos="fade-up"
                 data-aos-duration="800"

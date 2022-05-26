@@ -22,6 +22,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import NotFound from './pages/NotFound';
+import ManageProducts from './pages/Dashboard/ManageProducts';
 
 
 function App() {
@@ -58,6 +59,11 @@ function App() {
           <Route path="addproduct" element={
             <RequireAdmin>
               <AddProduct></AddProduct>
+            </RequireAdmin>
+          }></Route>
+          <Route path="manageproducts" element={
+            <RequireAdmin>
+              <ManageProducts />
             </RequireAdmin>
           }></Route>
         </Route>

@@ -3,7 +3,7 @@ import profile from '../image/1653497959006.png';
 import './MyPortfolio.css';
 const MyPortfolio = () => {
     return (
-        <div class="hero min-h-screen portfolio-container">
+        <div class="hero min-h-screen portfolio-container mb-28 mt-10">
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <img src={profile} class="max-w-sm rounded-lg shadow-2xl" />
                 <div>
@@ -33,6 +33,10 @@ const MyPortfolio = () => {
                         </ul>
                     </p>
                     <p class="py-6 font-bold">Recent 3 Projects: </p>
+                    <h5>1. ToDo list app: <a className="underline font-semibold text-primary" href="https://todo-list-e9d06.web.app/">Todo List</a></h5>
+                    <h5>2. Laptop Mania: <a className="underline font-semibold text-primary" href="https://laptop-mania-client-side.web.app/">Laptop Mania</a></h5>
+                    <h5>3. Pixieco: <a className="underline font-semibold text-primary" href="https://pixieco-react.web.app/">Pixieco</a></h5>
+
                 </div>
             </div>
         </div>
