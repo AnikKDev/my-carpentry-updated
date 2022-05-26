@@ -58,7 +58,7 @@ const AddProduct = () => {
         < div >
             <h2 className="text-2xl my-5 text-primary">Add Tool</h2>
             <div className=" flex justify-center">
-                <div className="card w-full md:mt-11 md:w-96 items-center shadow-2xl bg-base-100">
+                <div className="mb-8 card w-full md:mt-11 md:w-96 items-center shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body w-full lg:w-96">
                         <div className="form-control">
                             <label className="label">

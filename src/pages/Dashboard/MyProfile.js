@@ -76,7 +76,7 @@ const MyProfile = () => {
 
 
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="card mb-2 flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="relative z-0 w-full mb-6 group">
