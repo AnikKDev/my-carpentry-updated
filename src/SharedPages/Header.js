@@ -20,7 +20,7 @@ const Header = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 lg:px-6 my-4">
+        <div className="navbar justify-around bg-base-100 lg:px-6 my-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -37,14 +37,38 @@ const Header = () => {
                     {menuOptions}
                 </ul>
             </div>
-            <div className="navbar-end">
+
+            {user ?
+                <div class="dropdown dropdown-end">
+                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="https://api.lorem.space/image/face?hash=33791" />
+                        </div>
+                    </label>
+                    <ul tabindex="0" class="mt-3 p-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                        <li>
+                            <Link to="/dashboard/myprofile" class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </Link>
+                        </li>
+                        <li className="flex-row items-center"><span className="font-semibold text-primary">Email:</span>{user?.email}</li>
+                        <li className="flex-row items-center"><span className="font-semibold text-primary">Name:</span>{user?.displayName}</li>
+                        <button onClick={logout} className="btn btn-outline btn-sm btn-primary mt-10">Logout</button>
+                    </ul>
+                </div>
+                :
+                <Link to="/login" className="btn btn-outline btn-primary">Login</Link>}
+
+
+            {/* <div className="navbar-end">
                 {user ?
                     <>
                         <h5 className="text-primary font-semibold text-xl">{user?.displayName}</h5>
                         <h5 className="text-primary mx-1 font-semibold text-xl">{user?.email}</h5>
                         <button onClick={logout} className="btn btn-outline btn-primary">Logout</button>
                     </> : <Link to="/login" className="btn btn-outline btn-primary">Login</Link>}
-            </div>
+            </div> */}
         </div>
     );
 };
