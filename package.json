@@ -19,6 +19,7 @@
     "react-hook-form": "^7.31.2",
     "react-hot-toast": "^2.2.0",
     "react-icons": "^4.3.1",
+    "react-multi-carousel": "^2.8.0",
     "react-query": "^3.39.0",
     "react-rating": "^2.0.5",
     "react-responsive-carousel": "^3.2.23",
