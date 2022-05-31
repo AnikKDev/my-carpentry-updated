@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 import Rating from 'react-rating';
 const AddAReview = () => {
     const [user] = useAuthState(auth);
-    const [rating1, setRating1] = useState(0);
+    const [rating1, setRating1] = useState(1);
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
     // form submission
@@ -25,7 +25,7 @@ const AddAReview = () => {
                 comment: data.comment
             }
             console.log(review)
-            /* fetch('https://whispering-sierra-85456.herokuapp.com/reviews', {
+            fetch('https://whispering-sierra-85456.herokuapp.com/reviews', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -39,7 +39,7 @@ const AddAReview = () => {
                         toast.success('Thank you for your review');
                         reset()
                     }
-                }) */
+                })
         }
     };
     return (
