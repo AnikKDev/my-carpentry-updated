@@ -7,7 +7,7 @@ const Ourservice = () => {
             <div className="hero lg:px-22 py-10">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img
-                        data-aos="fade-left"
+                        data-aos="fade-right"
                         data-aos-duration="1000"
                         src="https://images.unsplash.com/photo-1544164560-adac3045edb2?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=411" className="max-w-sm rounded-lg shadow-2xl" alt="wood-cutter" />
                     <div data-aos="fade-right"

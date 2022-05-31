@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import auth from '../../firebase.init';
 import { toast } from 'react-hot-toast';
+import Rating from 'react-rating';
 const AddAReview = () => {
     const [user] = useAuthState(auth);
+    const [rating1, setRating1] = useState(0);
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
     // form submission
     const onSubmit = (data) => {
-        // console.log(data)
+        console.log(rating1)
         if (data.rating > 5 || data.rating < 1) {
             // console.log('invalid')
             toast.error('Please give a rating between 1-5')
@@ -19,10 +21,11 @@ const AddAReview = () => {
             // console.log('valid')
             const review = {
                 name: user.displayName,
-                rating: data.rating,
+                rating: rating1,
                 comment: data.comment
             }
-            fetch('https://whispering-sierra-85456.herokuapp.com/reviews', {
+            console.log(review)
+            /* fetch('https://whispering-sierra-85456.herokuapp.com/reviews', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -36,7 +39,7 @@ const AddAReview = () => {
                         toast.success('Thank you for your review');
                         reset()
                     }
-                })
+                }) */
         }
     };
     return (
@@ -54,8 +57,12 @@ const AddAReview = () => {
                             <label className="label">
                                 <span className="label-text">Ratings</span>
                             </label>
-                            <input type="number" placeholder="../5" className="input input-bordered"
-                                {...register("rating", { required: true })}
+                            <Rating
+                                className='text-yellow-300 text-xs'
+                                initialRating={rating1}
+                                emptySymbol="fa fa-star-o fa-2x star"
+                                fullSymbol="fa fa-star fa-2x star"
+                                onClick={rate => setRating1(rate)}
                             />
                             <span className="label-text text-error">{errors.rating?.type === 'required' && "Please add a rating 1-5"}</span>
                         </div>
