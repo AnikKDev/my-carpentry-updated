@@ -10,11 +10,14 @@ const ManageProducts = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch("http://localhost:5000/bookings", {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => res.json())
+    fetch(
+      "https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/bookings",
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => res.json())
   );
 
   // handle delete
@@ -27,12 +30,15 @@ const ManageProducts = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/bookings/${id}`, {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        })
+        fetch(
+          `https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/bookings/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((result) => {
             if (result.deletedCount > 0) {

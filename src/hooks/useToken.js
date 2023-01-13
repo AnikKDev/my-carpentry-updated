@@ -5,13 +5,16 @@ const useToken = (user) => {
     const email = user?.user?.email;
     const currentUser = { email: email };
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(currentUser),
-      })
+      fetch(
+        `https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/user/${email}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           const token = data.token;

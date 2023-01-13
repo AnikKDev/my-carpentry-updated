@@ -6,7 +6,9 @@ const Tools = () => {
   const [allTools, setAllTools] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/tools")
+      .get(
+        "https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/tools"
+      )
       .then(function (response) {
         // handle success
         setAllTools(response.data);

@@ -21,12 +21,15 @@ const MyProfile = () => {
     isLoading,
     refetch,
   } = useQuery("user", () =>
-    fetch(`http://localhost:5000/user/${user.email}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => res.json())
+    fetch(
+      `https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/user/${user.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => res.json())
   );
   useEffect(() => {
     if (updatedUser) {
@@ -46,13 +49,16 @@ const MyProfile = () => {
       education: education,
       linkedin: linkedin,
     };
-    fetch(`http://localhost:5000/myprofile/${user.email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    })
+    fetch(
+      `https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/myprofile/${user.email}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

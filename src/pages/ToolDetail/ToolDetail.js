@@ -40,7 +40,9 @@ const ToolDetail = () => {
   useEffect(() => {
     (async function getTool() {
       try {
-        const response = await axios.get(`http://localhost:5000/tool/${id}`);
+        const response = await axios.get(
+          `https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/tool/${id}`
+        );
         setToolDetail(response.data);
       } catch (error) {
         console.error(error);
@@ -65,13 +67,16 @@ const ToolDetail = () => {
         phone: data.phone,
       };
 
-      fetch("http://localhost:5000/booking", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(orderData),
-      })
+      fetch(
+        "https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/booking",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(orderData),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.acknowledged === true) {

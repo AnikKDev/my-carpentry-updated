@@ -31,14 +31,17 @@ const AddAReview = () => {
         comment: data.comment,
       };
       console.log(review);
-      fetch("http://localhost:5000/reviews", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify(review),
-      })
+      fetch(
+        "https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/reviews",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify(review),
+        }
+      )
         .then((res) => res.json())
         .then((result) => {
           if (result.acknowledged) {

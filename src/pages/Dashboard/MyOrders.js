@@ -18,12 +18,15 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("booking", () =>
-    fetch(`http://localhost:5000/booking?email=${user.email}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => {
+    fetch(
+      `https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/booking?email=${user.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => {
       if (res.status === 401 || res.status === 403) {
         signOut(auth);
         localStorage.removeItem("accessToken");
@@ -55,12 +58,15 @@ const MyOrders = () => {
     }).then((willDelete) => {
       if (willDelete) {
         // delete api from db
-        fetch(`http://localhost:5000/booking/${id}`, {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        })
+        fetch(
+          `https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/booking/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             // console.log(data);

@@ -37,14 +37,17 @@ const AddProduct = () => {
             availableQuantity: data.availablequantity,
           };
           // send to main server and db
-          fetch("http://localhost:5000/tools", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-            body: JSON.stringify(product),
-          })
+          fetch(
+            "https://my-carpentry-server-test-vercel-kh5971eg7-anikkdev.vercel.app/tools",
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+              body: JSON.stringify(product),
+            }
+          )
             .then((res) => res.json())
             .then((insertedTool) => {
               // console.log(insertedTool)
