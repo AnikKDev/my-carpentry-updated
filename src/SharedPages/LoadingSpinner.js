@@ -7,6 +7,5 @@ const LoadingSpinner = () => {
     </div>
   );
 };
-// error here
-asdfafefadfads;
+// error here == has been solved
 export default LoadingSpinner;
