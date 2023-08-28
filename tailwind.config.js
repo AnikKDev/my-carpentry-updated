@@ -1,35 +1,30 @@
-module.exports = {
-  content: ["./src/**/*.{html,js}"],
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   daisyui: {
     themes: [
       {
         mytheme: {
+          primary: "#e5978b",
 
-          "primary": "#e5978b",
+          secondary: "#80fc8b",
 
-          "secondary": "#80fc8b",
+          accent: "#FAE5E5",
 
-          "accent": "#FAE5E5",
-
-          "neutral": "#382839",
+          neutral: "#382839",
 
           "base-100": "#F8F8FC",
 
-          "info": "#4869D5",
+          info: "#4869D5",
 
-          "success": "#83E2C4",
+          success: "#83E2C4",
 
-          "warning": "#8C590D",
+          warning: "#8C590D",
 
-          "error": "#FB235D",
+          error: "#FB235D",
         },
       },
     ],
   },
-  plugins: [
-    require("daisyui"),
-    require('flowbite/plugin')
-  ],
-
-
-}
+  plugins: [require("daisyui")],
+};
